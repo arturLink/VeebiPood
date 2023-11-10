@@ -20,14 +20,14 @@ namespace VeebiPood.Controllers
             var product = _context.Products.ToList();
             return product;
         }
-        [HttpPost]
+        [HttpPost("add")]
         public List<Product> PostProduct([FromBody] Product product)
         {
             _context.Products.Add(product);
             _context.SaveChanges();
             return _context.Products.ToList();
         }
-        [HttpDelete("{id}")]
+        [HttpDelete("delete/{id}")]
         public List<Product> DeleteProduct(int id)
         {
             var product = _context.Products.Find(id);
@@ -41,7 +41,7 @@ namespace VeebiPood.Controllers
             _context.SaveChanges();
             return _context.Products.ToList();
         }
-        [HttpGet("{id}")]
+        [HttpGet("select/{id}")]
         public ActionResult<Product> GetProduct(int id)
         {
             var product = _context.Products.Find(id);
@@ -54,7 +54,7 @@ namespace VeebiPood.Controllers
             return product;
         }
 
-        [HttpPut("{id}")]
+        [HttpPut("update/{id}")]
         public ActionResult<List<Product>> PutProducts(int id, [FromBody] Product updatedProduct)
         {
             var product = _context.Products.Find(id);
